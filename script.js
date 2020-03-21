@@ -3,15 +3,6 @@ let money = +prompt ('Ваш бюджет на месяц?', 1000);
 
 let time = prompt ("Введите дату в формате YYYY-MM-DD");
 
-let qExpFirst = prompt ("Введите обязательную статью расходов в этом месяце");
-
-let qoExpFirst = +prompt ("Во сколько обойдется?");
-
-let qExpSecond = prompt ("Введите обязательную статью расходов в этом месяце");
-
-let qoExpSecond = +prompt ("Во сколько обойдется?");
-
-
 let appData = {
     budget: money,
     timeData: time,
@@ -21,7 +12,49 @@ let appData = {
     savings: false,
 };
 
-appData.expenses[qExpFirst] = qoExpFirst;
-appData.expenses[qExpSecond] = qoExpSecond;
+for (let i=0; i< 2; i++) {
 
-alert((money - qoExpFirst - qoExpSecond)/30);
+    let qExpFirst = prompt ("Введите обязательную статью расходов в этом месяце");
+
+    let qoExpFirst = +prompt ("Во сколько обойдется?");
+
+    if( (typeof(qExpFirst)) === 'string' && (typeof(qExpFirst)) != null && (typeof(qoExpFirst)) != null
+    && qExpFirst != '' && qoExpFirst != '' && qExpFirst.length < 50) {
+        console.log('done');
+        appData.expenses[qExpFirst] = qoExpFirst;
+    } else{
+        alert("ВВедите корректные данные");
+    }
+    
+}
+
+/*let i = 0;
+
+while (i<2){
+    i++
+    let qExpFirst = prompt ("Введите обязательную статью расходов в этом месяце");
+    let qoExpFirst = +prompt ("Во сколько обойдется?");
+    appData.expenses[qExpFirst] = qoExpFirst;
+}*/
+
+/*let i = 0;
+do {
+    i++;
+    let qExpFirst = prompt ("Введите обязательную статью расходов в этом месяце");
+    let qoExpFirst = +prompt ("Во сколько обойдется?");
+    appData.expenses[qExpFirst] = qoExpFirst;
+} while(i<2);*/
+
+appData.moneyPerDay = appData.budget / 30;
+
+alert("Ежедневный бюджет: " + appData.moneyPerDay);
+
+if(appData.moneyPerDay < 100) {
+    console.log("Минимальный уровень достатка");
+}else if(appData.moneyPerDay < 2000){
+    console.log("Средний уровень достатка");
+}else if(appData.moneyPerDay > 2000){
+    console.log("classno");
+}else{
+    console.log('Херня какая-то');
+}
